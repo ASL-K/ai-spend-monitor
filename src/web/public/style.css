@@ -1,0 +1,244 @@
+/* ai-spend-monitor 仪表盘样式 */
+/* 默认中文 + 简洁风格（跟 local-llm-doctor 风格统一） */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: #f7f8fa;
+  color: #1f2937;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Header */
+header {
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Hero - 月度总览 */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cost-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.cost {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.budget {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+.progress {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress .bar {
+  height: 100%;
+  background: white;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.progress .bar.warning {
+  background: #fbbf24;
+}
+
+.progress .bar.danger {
+  background: #f87171;
+}
+
+.meta {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.dot {
+  margin: 0 6px;
+}
+
+/* Card */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+/* By Provider 列表 */
+.provider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.provider-row:last-child {
+  border-bottom: none;
+}
+
+.provider-name {
+  flex: 0 0 100px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.provider-bar {
+  flex: 1;
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.provider-bar-fill {
+  height: 100%;
+  background: #6366f1;
+  border-radius: 4px;
+}
+
+.provider-cost {
+  flex: 0 0 80px;
+  text-align: right;
+  font-weight: 600;
+  color: #111827;
+}
+
+.provider-percent {
+  flex: 0 0 50px;
+  text-align: right;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Day chart */
+.day-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 100px;
+  padding: 8px 0;
+}
+
+.day-bar {
+  flex: 1;
+  background: #6366f1;
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: opacity 0.2s;
+  position: relative;
+}
+
+.day-bar:hover {
+  opacity: 0.8;
+}
+
+.day-bar.empty {
+  background: #e5e7eb;
+}
+
+/* By Model 列表 */
+.model-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.model-row:last-child {
+  border-bottom: none;
+}
+
+.model-rank {
+  flex: 0 0 24px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.model-name {
+  flex: 1;
+  color: #4b5563;
+}
+
+.model-cost {
+  flex: 0 0 80px;
+  text-align: right;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Empty */
+.empty {
+  color: #9ca3af;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 13px;
+  padding: 24px 0;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 24px;
+}
+
+.footer-detail {
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+}

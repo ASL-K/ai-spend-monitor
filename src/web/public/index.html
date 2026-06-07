@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ai-spend-monitor 仪表盘</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 本月 AI 成本</h1>
+      <div class="subtitle" id="subtitle">加载中...</div>
+    </header>
+
+    <section class="hero" id="hero">
+      <div class="cost-row">
+        <div class="cost" id="totalCost">¥--</div>
+        <div class="budget" id="budget">/ ¥--</div>
+      </div>
+      <div class="progress">
+        <div class="bar" id="progressBar" style="width: 0%"></div>
+      </div>
+      <div class="meta">
+        <span id="totalCalls">-- 次调用</span>
+        <span class="dot">·</span>
+        <span id="totalTokens">-- tokens</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>📦 按 Provider 拆解</h2>
+      <div id="byProvider">
+        <div class="empty">暂无数据</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>📅 最近 30 天</h2>
+      <div id="byDay" class="day-chart">
+        <div class="empty">暂无数据</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>🏆 按模型 Top 10</h2>
+      <div id="byModel">
+        <div class="empty">暂无数据</div>
+      </div>
+    </section>
+
+    <footer>
+      <div>ai-spend-monitor v0.0.3</div>
+      <div class="footer-detail">100% 本地部署 · 零数据外发</div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

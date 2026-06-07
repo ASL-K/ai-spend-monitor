@@ -1,0 +1,36 @@
+{
+  "version": "2026-06-07",
+  "usdToCNY": 7.2,
+  "currency": "CNY",
+  "notes": "价格均为官方公开价。MiniMax 价格含套餐内部价。OpenAI 价格 × 7.2 汇率。",
+  "prices": [
+    {
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "inputPer1kCNY": 0.002,
+      "outputPer1kCNY": 0.003,
+      "updatedAt": "2026-06-07"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-reasoner",
+      "inputPer1kCNY": 0.004,
+      "outputPer1kCNY": 0.016,
+      "updatedAt": "2026-06-07"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-Text-01",
+      "inputPer1kCNY": 0.001,
+      "outputPer1kCNY": 0.001,
+      "updatedAt": "2026-06-07"
+    },
+    {
+      "provider": "minimax",
+      "model": "MiniMax-Reasoning",
+      "inputPer1kCNY": 0.004,
+      "outputPer1kCNY": 0.016,
+      "updatedAt": "2026-06-07"
+    }
+  ]
+}

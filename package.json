@@ -1,0 +1,72 @@
+{
+  "name": "ai-spend-monitor",
+  "version": "0.0.0",
+  "description": "我 AI 套餐 49 元，这个月烧了多少？100% 本地部署的个人 AI Token 成本仪表盘",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "ai-spend-monitor": "bin/ai-spend-monitor.js",
+    "aism": "bin/aism.js"
+  },
+  "scripts": {
+    "build": "node node_modules/typescript/bin/tsc && npm run copy-assets",
+    "copy-assets": "node scripts/copy-assets.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "start": "node bin/ai-spend-monitor.js",
+    "aism": "node bin/aism.js"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "token",
+    "cost",
+    "monitor",
+    "dashboard",
+    "openai",
+    "deepseek",
+    "minimax",
+    "claude",
+    "gpt",
+    "reverse-proxy"
+  ],
+  "author": {
+    "name": "ASL-K",
+    "url": "https://github.com/ASL-K"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ASL-K/ai-spend-monitor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ASL-K/ai-spend-monitor/issues"
+  },
+  "homepage": "https://github.com/ASL-K/ai-spend-monitor#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0",
+    "vitest": "^2.0.0"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ]
+}

@@ -1,0 +1,55 @@
+# 依赖
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# 构建产物
+dist/
+build/
+*.tsbuildinfo
+
+# 测试
+coverage/
+.nyc_output/
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 临时目录
+.cache/
+.tmp/
+tmp/
+
+# 日志
+*.log
+
+# 数据库（运行时产生，不进 git）
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# 真实 api key（本地调试可能用）
+ai-spend-monitor.local.json
+
+# npm 临时
+.npm/_logs/
+.npm/_cacache/
+
+# OS
+desktop.ini

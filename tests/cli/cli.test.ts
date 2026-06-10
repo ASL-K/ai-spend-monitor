@@ -43,7 +43,7 @@ describeIfBuilt('CLI integration', () => {
   it('shows version with --version', async () => {
     const { stdout, code } = await runCli(['--version']);
     expect(code).toBe(0);
-    expect(stdout.trim()).toBe('0.0.0');
+    expect(stdout.trim()).toBe('0.1.0');
   });
 
   it('shows help with --help', async () => {

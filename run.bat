@@ -8,7 +8,7 @@ set STEP=0
 
 echo.
 echo ============================================
-echo   ai-spend-monitor v0.0.0 Windows Launcher
+echo   ai-spend-monitor v0.1.0 Windows Launcher
 echo ============================================
 echo.
 

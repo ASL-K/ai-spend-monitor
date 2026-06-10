@@ -26,6 +26,7 @@
 
 ### Changed
 - 全链路版本号统一为 v0.1.0（package.json / bin / src / html / run.bat）
+- v0.1.1: 升 better-sqlite3 11→12（解决 Windows 11 ERR_DLOPEN_FAILED）+ 加 .env.example 模板 + README 安全章节
 
 ### Verified
 - 94/94 vitest 测试通过

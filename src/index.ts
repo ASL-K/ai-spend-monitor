@@ -54,7 +54,7 @@ let runningDb: ReturnType<typeof openDb> | null = null;
 export async function main(overrides: Partial<Config> = {}): Promise<void> {
   const config = loadConfig(overrides);
   logger.configure(config);
-  logger.info(`ai-spend-monitor v0.1.0 starting`);
+  logger.info(`ai-spend-monitor v0.1.1 starting`);
   logger.info(`Listening on http://${config.host}:${config.port}`);
   logger.info(`Database: ${config.dbPath}`);
   logger.info(`Providers: ${listProviders().map((p) => p.name).join(', ')}`);
@@ -143,7 +143,7 @@ async function handleApi(
 ): Promise<void> {
   let data: unknown;
   if (path === '/api/health') {
-    data = { status: 'ok', version: '0.1.0', providers: listProviders().map((p) => p.name) };
+    data = { status: 'ok', version: '0.1.1', providers: listProviders().map((p) => p.name) };
   } else if (path === '/api/stats/month') {
     const month = url.searchParams.get('month') ?? currentMonth();
     data = getMonthlyStats(db, month);

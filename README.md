@@ -49,7 +49,7 @@ npm start
 **启动成功**：
 
 ```
-[INFO] ai-spend-monitor v0.1.0 starting
+[INFO] ai-spend-monitor v0.1.1 starting
 [INFO] Listening on http://127.0.0.1:8123
 [INFO] Database: /path/to/ai-spend-monitor/data/ai-spend.db
 [INFO] Providers: deepseek, minimax
@@ -101,7 +101,7 @@ resp = client.chat.completions.create(
 ```bash
 # 健康检查
 curl http://localhost:8123/api/health
-# {"status":"ok","version":"0.1.0","providers":["deepseek","minimax"]}
+# {"status":"ok","version":"0.1.1","providers":["deepseek","minimax"]}
 
 # 真实代理调用
 curl -X POST http://localhost:8123/v1/chat/completions \
@@ -207,6 +207,59 @@ npm start
 # 调试模式（详细日志）
 npm start -- --debug
 ```
+
+## 安全
+
+### 你的 API key 怎么用
+
+**核心原则**: B 项目**不存你的 API key**。所有 key 在两个地方生存:
+1. **你的 client 代码** (Python / Node / curl)
+2. **真 provider 服务** (DeepSeek / MiniMax)
+
+B 项目只在两处之间**透传**, 不会落到:
+- ❌ SQLite (`data/ai-spend.db` — 只有 timestamp / provider / model / tokens / cost, **无 api_key 字段**)
+- ❌ 日志 (`server.log` / `server.err` — 只有请求元数据, 无 Authorization header)
+- ❌ 配置文件 (没有 `.env` 模板, 不读环境变量里的 key)
+- ❌ GitHub 仓库 (`.gitignore` 已含 `.env` / `.env.local` / `.env.*.local`)
+
+### 推荐做法
+
+**1. Client 代码用环境变量** (不要硬编码):
+```python
+import os
+from openai import OpenAI
+client = OpenAI(
+    base_url="http://localhost:8123/v1",
+    api_key=os.environ["DEEPSEEK_API_KEY"],  # ← 环境变量
+    default_headers={"x-provider": "deepseek"},
+)
+```
+
+**2. PowerShell 临时输入** (不进命令行历史):
+```powershell
+$key = Read-Host "DeepSeek key" -AsSecureString
+# ... 用 $key 发请求 ...
+```
+
+**3. 长期存到用户环境变量** (一次性):
+```powershell
+[Environment]::SetEnvironmentVariable("DEEPSEEK_API_KEY", "sk-你的真key", "User")
+# 重启 PowerShell 后所有 client 都能读
+```
+
+### 绝对不能做
+
+- ❌ 把 key 硬编码到代码再 `git commit`
+- ❌ 把 `data/ai-spend.db` / `server.log` 推到公共仓库 (不含 key, 但含元数据, 别冒险)
+- ❌ 把 AISM_HOST 改成 `0.0.0.0` (会暴露你的仪表盘到局域网, 别人能看你的消费数据)
+- ❌ 在 PowerShell 历史里留下 `Bearer sk-xxx` (用 `-AsSecureString` 避免)
+
+### 故障排查
+
+如果你怀疑 key 泄露:
+1. **立刻去 provider 后台 revoke 这个 key** (DeepSeek / MiniMax 都有"重置 key"按钮)
+2. 重新生成, 用上面的安全方式存
+3. `git log -p` 检查历史有没有 hardcode (用 `git filter-branch` 或 BFG 重写历史, 严重时直接删仓库重建)
 
 ## License
 

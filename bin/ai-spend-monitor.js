@@ -57,7 +57,7 @@ const { main } = await import(pathToFileURL(distPath).href);
 await main(overrides);
 
 function printHelp() {
-  console.log(`ai-spend-monitor v0.1.0
+  console.log(`ai-spend-monitor v0.1.1
 
 Usage: ai-spend-monitor [options]
 
@@ -79,6 +79,6 @@ Proxy:      http://localhost:<port>/v1/chat/completions
 }
 
 function printVersion() {
-  // 跟 package.json 同步（硬编码 v0.1.0，跟 src 一起升）
-  console.log('0.1.0');
+  // 跟 package.json 同步（硬编码 v0.1.1，跟 src 一起升）
+  console.log('0.1.1');
 }

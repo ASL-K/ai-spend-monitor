@@ -1,6 +1,6 @@
 {
   "name": "ai-spend-monitor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "我 AI 套餐 49 元，这个月烧了多少？100% 本地部署的个人 AI Token 成本仪表盘",
   "type": "module",
   "main": "dist/index.js",
@@ -48,7 +48,7 @@
     "node": ">=20.0.0"
   },
   "dependencies": {
-    "better-sqlite3": "^11.3.0",
+    "better-sqlite3": "^12.10.0",
     "commander": "^12.1.0"
   },
   "devDependencies": {

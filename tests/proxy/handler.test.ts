@@ -160,7 +160,7 @@ describe('handleProxy - upstream fetch (mocked)', () => {
                   { status: 200 }
                 )
               ),
-            50
+            30
           );
         })
     );
@@ -171,7 +171,7 @@ describe('handleProxy - upstream fetch (mocked)', () => {
       body: { model: 'deepseek-chat', messages: [{ role: 'user', content: 'hi' }] },
     });
 
-    expect(result.record.durationMs).toBeGreaterThanOrEqual(50);
+    expect(result.record.durationMs).toBeGreaterThanOrEqual(30);
     expect(result.record.durationMs).toBeLessThan(5000);
   });
 });

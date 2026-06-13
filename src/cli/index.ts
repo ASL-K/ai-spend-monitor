@@ -14,9 +14,9 @@ import { logCommand } from './log.js';
 
 export async function run(argv: string[]): Promise<void> {
   // commander 12 特殊处理: 在子命令模式下, --version/--help 触发 help 输出
-  // 业务上我们要 --version 真的输出 "0.1.0", 所以手动拦截
+  // 业务上我们要 --version 真的输出 "0.1.1", 所以手动拦截
   if (argv.includes('--version') || argv.includes('-V')) {
-    console.log('0.1.0');
+    console.log('0.1.1');
     return;
   }
   if (argv.includes('--help') || argv.includes('-h') || argv.length === 0) {
@@ -29,7 +29,7 @@ export async function run(argv: string[]): Promise<void> {
   program
     .name('aism')
     .description('ai-spend-monitor CLI: query token spend from local SQLite')
-    .version('0.1.0')
+    .version('0.1.1')
     // 关键: 让 commander 解析失败时**抛 CommanderError** 而不是 process.exit
     // 这样我们可以 catch 并正常处理；不这样会直接 kill 进程
     .exitOverride()

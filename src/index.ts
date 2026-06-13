@@ -17,7 +17,7 @@ import { join, dirname, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadConfig } from './config.js';
 import { openDb, closeDb } from './tracker/db.js';
-import { insertCall } from './tracker/insert.js';
+import { insertCall, insertClientError } from './tracker/insert.js';
 import { getMonthlyStats, getDailyStats, getRecentCalls } from './tracker/query.js';
 import { calculateCostCNY } from './pricing/calculator.js';
 import { handleProxy } from './proxy/handler.js';
@@ -175,11 +175,13 @@ async function handleProxyRoute(
   try {
     body = JSON.parse(rawBody);
   } catch (err) {
+    insertClientError(db, `Invalid JSON body: ${(err as Error).message}`);
     jsonResponse(res, 400, { error: 'Invalid JSON body', message: (err as Error).message });
     return;
   }
 
   if (!body.model || !Array.isArray(body.messages)) {
+    insertClientError(db, 'Missing required fields: model, messages', body.model);
     jsonResponse(res, 400, { error: 'Missing required fields: model, messages' });
     return;
   }
@@ -197,6 +199,11 @@ async function handleProxyRoute(
   }
 
   if (!provider) {
+    insertClientError(
+      db,
+      'Cannot determine provider. Set x-provider header (deepseek/minimax).',
+      body.model
+    );
     jsonResponse(res, 400, {
       error: 'Cannot determine provider. Set x-provider header (deepseek/minimax).',
     });

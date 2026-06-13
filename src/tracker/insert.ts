@@ -33,6 +33,31 @@ export function insertCall(db: Db, record: Omit<CallRecord, 'id'>): number {
   return Number(result.lastInsertRowid);
 }
 
+/**
+ * 写一条客户端错误记录（400 路径：JSON 解析失败 / 缺字段 / provider 推断不出）
+ * 不调上游 API，没有 token 消耗，costCNY=0，durationMs≈0
+ * provider 写 'unknown'（无 header 上下文），model 写收到的或空
+ */
+export function insertClientError(
+  db: Db,
+  errorMessage: string,
+  model: string = ''
+): number {
+  return insertCall(db, {
+    timestamp: Date.now(),
+    provider: 'unknown',
+    model: model || '(no model)',
+    upstreamModel: model || '(no model)',
+    promptTokens: 0,
+    completionTokens: 0,
+    totalTokens: 0,
+    costCNY: 0,
+    durationMs: 0,
+    status: 'error',
+    errorMessage,
+  });
+}
+
 /** 批量插入（用于导入历史数据，v0.1 不上 UI） */
 export function insertCalls(db: Db, records: Array<Omit<CallRecord, 'id'>>): number {
   const stmt = db.prepare(`
